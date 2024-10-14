@@ -202,17 +202,17 @@ class PulidFluxEvaClipLoader:
     @classmethod
     def INPUT_TYPES(s):
         return {
-            "required": {},
+            "required": {"pretrained": ("STRING", )},
         }
 
     RETURN_TYPES = ("EVA_CLIP",)
     FUNCTION = "load_eva_clip"
     CATEGORY = "pulid"
 
-    def load_eva_clip(self):
+    def load_eva_clip(self, pretrained):
         from .eva_clip.factory import create_model_and_transforms
 
-        model, _, _ = create_model_and_transforms('EVA02-CLIP-L-14-336', 'eva_clip', force_custom_clip=True)
+        model, _, _ = create_model_and_transforms('EVA02-CLIP-L-14-336', pretrained, force_custom_clip=True)
 
         model = model.visual
 
